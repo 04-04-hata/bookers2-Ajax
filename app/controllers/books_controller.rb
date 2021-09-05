@@ -19,6 +19,8 @@ class BooksController < ApplicationController
     @user = current_user
     @book = Book.new
     @books = Book.all
+    @favorite = Favorite.new
+    @book_comment = BookComment.new
   end
 
   def show
@@ -26,6 +28,9 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @user = @book.user
     @books = @user.books
+    @favorite = Favorite.new
+    @book_comment = BookComment.new
+
   end
 
   def edit

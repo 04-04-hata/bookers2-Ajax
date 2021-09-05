@@ -71,6 +71,20 @@
                 </td>
                 <td><%= link_to book.title,book_path(book) %></td>
                 <td><%= book.body %></td>
+                <% if current_user.already_favorited?(book) %>
+                  <td>
+                    <%= link_to book_favorites_path(book),method: :delete do %>
+                      💜 <%= book.favorites.count %>
+                    <% end %>
+                  </td>
+                <% else %>
+                  <td>
+                    <%= link_to book_favorites_path(book),method: :post do %>
+                      💙 <%= book.favorites.count %>
+                    <% end %>
+                  </td>
+                <% end %>
+                <td><%= book.book_comments.count %></td>
               </tr>
             </tbody>
             <% end %>
