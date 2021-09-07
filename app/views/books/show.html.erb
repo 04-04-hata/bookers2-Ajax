@@ -17,6 +17,22 @@
           	 <th>introduction</th>
           	  <th><%= @user.introduction %></th>
             </tr>
+            <tr>
+          	   <th>follows</th>
+          	   <th>
+          	     <%= link_to user_followings_path(@user.id) do %>
+        	         <%= @user.followings.count %>
+        	       <% end %>
+          	   </th>
+            </tr>
+            <tr>
+          	  <th>followers</th>
+          	  <th>
+          	    <%= link_to user_followers_path(@user.id) do %>
+        	        <%= @user.followers.count %>
+        	      <% end %>
+          	  </th>
+            </tr>
           </tbody>
     </table>
 
@@ -80,7 +96,7 @@
                   <% end %>
                 </td>
               <% end %>
-                <td><%= @book.book_comments.count %></td>
+                <td>コメント数: <%= @book.book_comments.count %></td>
             <% if @book.user_id == current_user.id %>
               <td><%= link_to "Edit", edit_book_path(@book),class:"btn btn-sm btn-success" %></td>
               <td><%= link_to "Destroy", "/books/#{@book.id}", class:"btn btn-sm btn-danger","data-confirm" => "本当に消しますか?", method: :delete %></td>
