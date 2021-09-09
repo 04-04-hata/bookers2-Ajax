@@ -74,6 +74,7 @@
                 <th></th>
                 <th>Title</th>
                 <th>Opinion</th>
+                <th></th>
                 <th colspan="3"></th>
               </tr>
            </thead>
@@ -87,19 +88,9 @@
                 </td>
                 <td><%= link_to book.title,book_path(book) %></td>
                 <td><%= book.body %></td>
-                <% if current_user.already_favorited?(book) %>
-                  <td>
-                    <%= link_to book_favorites_path(book),method: :delete do %>
-                      💜 <%= book.favorites.count %>
-                    <% end %>
-                  </td>
-                <% else %>
-                  <td>
-                    <%= link_to book_favorites_path(book),method: :post do %>
-                      💙 <%= book.favorites.count %>
-                    <% end %>
-                  </td>
-                <% end %>
+                <td id= "favorites_buttons_<%= book.id %>" >
+                  <%= render partial: 'favorites/favorite', locals: {book: book} %>
+                </td>
                 <td>コメント数: <%= book.book_comments.count %></td>
               </tr>
             </tbody>
